@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ugrag"
+version = "0.1.0"
+description = ""
+authors = ["Albert Fazlyev <albert.fz@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+polars = "^1.13.1"
+datasets = "^3.1.0"
+elasticsearch = "^8.16.0"
+sentence-transformers = "^3.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
