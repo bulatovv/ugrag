@@ -4,7 +4,7 @@ from datasets import get_dataset_config_names
 from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer('intfloat/e5-mistral-7b-instruct')
-data_dir = Path(__file__).parent.parent.resolve() / 'data'
+data_dir = Path(__file__).parent.parent.parent.resolve() / 'data'
 
 if not data_dir.exists():
     data_dir.mkdir()
