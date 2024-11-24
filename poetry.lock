@@ -376,6 +376,27 @@ requests = ["requests (>=2.4.0,!=2.32.2,<3.0.0)"]
 vectorstore-mmr = ["numpy (>=1)", "simsimd (>=3)"]
 
 [[package]]
+name = "elasticsearch-dsl"
+version = "8.16.0"
+description = "Python client for Elasticsearch"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "elasticsearch_dsl-8.16.0-py3-none-any.whl", hash = "sha256:39b753804df885cbc71fcaf40efcece6ef5569e2d70f6fe79c5bdb7da066acb4"},
+    {file = "elasticsearch_dsl-8.16.0.tar.gz", hash = "sha256:05bd5050eef7d0706a4487cd22864d3c158c8e1cbca26b53ef1a473bdee13459"},
+]
+
+[package.dependencies]
+elastic-transport = ">=8.0.0,<9.0.0"
+elasticsearch = ">=8.0.0,<9.0.0"
+python-dateutil = "*"
+typing-extensions = "*"
+
+[package.extras]
+async = ["elasticsearch[async] (>=8.0.0,<9.0.0)"]
+develop = ["coverage", "elasticsearch[async]", "jinja2", "mypy", "nltk", "pyright", "pytest", "pytest-asyncio", "pytest-cov", "pytest-mock", "pytz", "sentence-transformers", "sphinx (>2)", "sphinx-rtd-theme (>0.5)", "tqdm", "types-python-dateutil", "types-pytz", "types-tqdm", "unasync"]
+
+[[package]]
 name = "filelock"
 version = "3.16.1"
 description = "A platform independent file lock."
@@ -2538,4 +2559,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "ce1b49e7757128ca82ce10c942343a5566e55ae0126a47a1c58f7219f8031673"
+content-hash = "5978f2a7263c0d1ed6092eb19cd5493973dee7638c4078856ef335321d52c4db"
