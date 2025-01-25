@@ -5,11 +5,14 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: ${DB_USER:-user}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
-      POSTGRES_DB: ${DB_NAME:-ugragdb}
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ugragdb
     ports:
       - "5434:5432"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./data:/docker-entrypoint-initdb.d
@@ -18,17 +21,30 @@ services:
                apt-get install -y postgresql-15-pgvector &&
                docker-entrypoint.sh postgres"
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+  opensearch:
+    image: opensearchproject/opensearch:2.10.0
     environment:
       - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g"
+      - "plugins.security.disabled=true"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 6G
     ports:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - es_data:/usr/share/elasticsearch/data
+      - os_data:/usr/share/opensearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
 
 volumes:
   postgres_data:
-  es_data:
+  os_data:
